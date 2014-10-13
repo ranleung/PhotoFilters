@@ -93,13 +93,13 @@
 		701826CE19EC633900635CEF /* PhotoFilters */ = {
 			isa = PBXGroup;
 			children = (
+				701826DB19EC633900635CEF /* Images.xcassets */,
+				701826D319EC633900635CEF /* PhotoFilters.xcdatamodeld */,
+				701826CF19EC633900635CEF /* Supporting Files */,
 				701826D119EC633900635CEF /* AppDelegate.swift */,
 				701826F419EC638B00635CEF /* Controller Layer */,
 				701826F619EC639F00635CEF /* Model Layer */,
 				701826F519EC639500635CEF /* View Layer */,
-				701826DB19EC633900635CEF /* Images.xcassets */,
-				701826D319EC633900635CEF /* PhotoFilters.xcdatamodeld */,
-				701826CF19EC633900635CEF /* Supporting Files */,
 			);
 			path = PhotoFilters;
 			sourceTree = "<group>";
