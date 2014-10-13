@@ -14,6 +14,13 @@
 		701826DC19EC633900635CEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701826DB19EC633900635CEF /* Images.xcassets */; };
 		701826DF19EC633900635CEF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701826DD19EC633900635CEF /* LaunchScreen.xib */; };
 		701826EB19EC633900635CEF /* PhotoFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701826EA19EC633900635CEF /* PhotoFiltersTests.swift */; };
+		701826FE19EC641300635CEF /* photo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826F719EC641300635CEF /* photo2.jpg */; };
+		701826FF19EC641300635CEF /* photo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826F819EC641300635CEF /* photo3.jpg */; };
+		7018270019EC641300635CEF /* photo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826F919EC641300635CEF /* photo4.jpg */; };
+		7018270119EC641300635CEF /* photo5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826FA19EC641300635CEF /* photo5.jpg */; };
+		7018270219EC641300635CEF /* photo6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826FB19EC641300635CEF /* photo6.jpg */; };
+		7018270319EC641300635CEF /* photo7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826FC19EC641300635CEF /* photo7.jpg */; };
+		7018270419EC641300635CEF /* photo8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826FD19EC641300635CEF /* photo8.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,13 @@
 		701826E419EC633900635CEF /* PhotoFiltersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoFiltersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		701826E919EC633900635CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		701826EA19EC633900635CEF /* PhotoFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFiltersTests.swift; sourceTree = "<group>"; };
+		701826F719EC641300635CEF /* photo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo2.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo2.jpg"; sourceTree = "<group>"; };
+		701826F819EC641300635CEF /* photo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo3.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo3.jpg"; sourceTree = "<group>"; };
+		701826F919EC641300635CEF /* photo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo4.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo4.jpg"; sourceTree = "<group>"; };
+		701826FA19EC641300635CEF /* photo5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo5.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo5.jpg"; sourceTree = "<group>"; };
+		701826FB19EC641300635CEF /* photo6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo6.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo6.jpg"; sourceTree = "<group>"; };
+		701826FC19EC641300635CEF /* photo7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo7.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo7.jpg"; sourceTree = "<group>"; };
+		701826FD19EC641300635CEF /* photo8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo8.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo8.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,10 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				701826D119EC633900635CEF /* AppDelegate.swift */,
-				701826D619EC633900635CEF /* ViewController.swift */,
-				701826D819EC633900635CEF /* Main.storyboard */,
+				701826F419EC638B00635CEF /* Controller Layer */,
+				701826F619EC639F00635CEF /* Model Layer */,
+				701826F519EC639500635CEF /* View Layer */,
 				701826DB19EC633900635CEF /* Images.xcassets */,
-				701826DD19EC633900635CEF /* LaunchScreen.xib */,
 				701826D319EC633900635CEF /* PhotoFilters.xcdatamodeld */,
 				701826CF19EC633900635CEF /* Supporting Files */,
 			);
@@ -93,6 +107,13 @@
 		701826CF19EC633900635CEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				701826F719EC641300635CEF /* photo2.jpg */,
+				701826F819EC641300635CEF /* photo3.jpg */,
+				701826F919EC641300635CEF /* photo4.jpg */,
+				701826FA19EC641300635CEF /* photo5.jpg */,
+				701826FB19EC641300635CEF /* photo6.jpg */,
+				701826FC19EC641300635CEF /* photo7.jpg */,
+				701826FD19EC641300635CEF /* photo8.jpg */,
 				701826D019EC633900635CEF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -113,6 +134,30 @@
 				701826E919EC633900635CEF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		701826F419EC638B00635CEF /* Controller Layer */ = {
+			isa = PBXGroup;
+			children = (
+				701826D619EC633900635CEF /* ViewController.swift */,
+			);
+			name = "Controller Layer";
+			sourceTree = "<group>";
+		};
+		701826F519EC639500635CEF /* View Layer */ = {
+			isa = PBXGroup;
+			children = (
+				701826DD19EC633900635CEF /* LaunchScreen.xib */,
+				701826D819EC633900635CEF /* Main.storyboard */,
+			);
+			name = "View Layer";
+			sourceTree = "<group>";
+		};
+		701826F619EC639F00635CEF /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Model Layer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,9 +240,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				701826FF19EC641300635CEF /* photo3.jpg in Resources */,
+				7018270219EC641300635CEF /* photo6.jpg in Resources */,
 				701826DA19EC633900635CEF /* Main.storyboard in Resources */,
+				701826FE19EC641300635CEF /* photo2.jpg in Resources */,
 				701826DF19EC633900635CEF /* LaunchScreen.xib in Resources */,
+				7018270419EC641300635CEF /* photo8.jpg in Resources */,
+				7018270319EC641300635CEF /* photo7.jpg in Resources */,
 				701826DC19EC633900635CEF /* Images.xcassets in Resources */,
+				7018270019EC641300635CEF /* photo4.jpg in Resources */,
+				7018270119EC641300635CEF /* photo5.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
