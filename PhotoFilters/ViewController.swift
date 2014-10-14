@@ -14,12 +14,10 @@ import CoreData
 class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource  {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewTrailingConstraint: NSLayoutConstraint!
-    
     @IBOutlet var imageView: UIImageView!
     
     let imageQueue = NSOperationQueue()
@@ -28,6 +26,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     var filters = [Filter]()
     //array of thumbnail wrapper objects
     var filterThumbnails = [FilterThumbnail]()
+    var context: CIContext?
+    var originalThumbnail: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
         
+        println(image.size)
+        self.collectionView.dataSource = self
         
     }
     
@@ -102,6 +104,17 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func generateThumbnail() {
+        let size = CGSize(width: 100, height: 100)
+        //Creates a bitmap-based graphics context and makes it the current context.
+        UIGraphicsBeginImageContext(size)
+        self.imageView.image?.drawInRect(CGRect(x: 0, y: 0, width: 100, height: 100))
+        //Returns an image based on the contents of the current bitmap-based graphics context.
+        self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
+        //Removes the current bitmap-based graphics context from the top of the stack.
+        UIGraphicsEndImageContext()
+    }
+    
     //Being called automatically from the delegate?
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
@@ -113,6 +126,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
         self.imageView.image = image
+        self.generateThumbnail()
     }
     
     //For the collectionView, number of filters in the section
