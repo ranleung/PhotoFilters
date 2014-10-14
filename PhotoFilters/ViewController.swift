@@ -45,7 +45,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
-        seeder.seedCoreData()
+        //seeder.seedCoreData()
         
         self.fetchFilters()
         self.resetFilterThumbnails()
@@ -99,8 +99,15 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     }
     
     func exitFilteringMode() {
-        //reset the contraints back to normal values
-        //remove the Done button
+        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant / 2
+        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant / 2
+        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant / 2
+        self.collectionViewBottomConstraint.constant = -100
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            //Lays out the subviews immediately.
+            self.view.layoutIfNeeded()
+        })
         self.navigationItem.rightBarButtonItem = nil
     }
     
