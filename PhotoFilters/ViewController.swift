@@ -41,17 +41,15 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         var myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
         self.context = CIContext(EAGLContext: myEAGLContext, options: options)
         
-        
         var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
-        seeder.seedCoreData()
+        //seeder.seedCoreData()
         
         self.fetchFilters()
         self.resetFilterThumbnails()
         
-        println(image.size)
         self.collectionView.dataSource = self
         
     }
@@ -101,7 +99,9 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     }
     
     func exitFilteringMode() {
-        
+        //reset the contraints back to normal values
+        //remove the Done button
+        self.navigationItem.rightBarButtonItem = nil
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -212,6 +212,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.imageView.image = image
         self.generateThumbnail()
         self.resetFilterThumbnails()
+        self.collectionView.reloadData()
     }
 
 }

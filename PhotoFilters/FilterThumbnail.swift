@@ -40,7 +40,7 @@ class FilterThumbnail {
             imageFilter.setValue(image, forKey: kCIInputImageKey)
             
             //Now to generate the results
-            var result = imageFilter.valueForKey(kCIInputImageKey) as CIImage
+            var result = imageFilter.valueForKey(kCIOutputImageKey) as CIImage
             //extent - Returns a rectangle that specifies the extent of the image.
             var extent = result.extent()
             var imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
