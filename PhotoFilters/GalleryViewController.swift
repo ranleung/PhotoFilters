@@ -22,6 +22,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     //Creating an empty array for image storage
     var images = [UIImage]()
+    var header: GalleryHeaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +60,24 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        //The image is now being stored in the custom delegate.
         self.delegate?.didTapOnPicture(self.images[indexPath.row])
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    //For Gallery Header and Footer
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        //For Header
+        if kind == UICollectionElementKindSectionHeader {
+            var headerView: GalleryHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "GALLERY_HEADER", forIndexPath: indexPath) as GalleryHeaderView
+            headerView.headerLabel.text = "My Trip"
+            return headerView
+        } else {
+            var footerView: GalleryFooterView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "GALLERY_FOOTER", forIndexPath: indexPath) as GalleryFooterView
+            footerView.footerLabel.text = "\(self.images.count) Photos"
+            return footerView
+        }
+    }
     
 }
 

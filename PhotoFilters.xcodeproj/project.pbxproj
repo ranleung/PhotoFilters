@@ -23,6 +23,8 @@
 		7018270419EC641300635CEF /* photo8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 701826FD19EC641300635CEF /* photo8.jpg */; };
 		7018270619EC68BB00635CEF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018270519EC68BB00635CEF /* GalleryViewController.swift */; };
 		7018270819EC6D0C00635CEF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018270719EC6D0C00635CEF /* GalleryCell.swift */; };
+		7018DA2919ECA18D00429D7D /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */; };
+		7018DA2B19ECA1BB00429D7D /* GalleryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		701826FD19EC641300635CEF /* photo8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo8.jpg; path = "../../../sea-b23-iOS/PhotoFilters/PhotoFilters/photo8.jpg"; sourceTree = "<group>"; };
 		7018270519EC68BB00635CEF /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		7018270719EC6D0C00635CEF /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryHeaderView.swift; sourceTree = "<group>"; };
+		7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 				701826DD19EC633900635CEF /* LaunchScreen.xib */,
 				701826D819EC633900635CEF /* Main.storyboard */,
 				7018270719EC6D0C00635CEF /* GalleryCell.swift */,
+				7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */,
+				7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -275,9 +281,11 @@
 			files = (
 				701826D719EC633900635CEF /* ViewController.swift in Sources */,
 				7018270819EC6D0C00635CEF /* GalleryCell.swift in Sources */,
+				7018DA2919ECA18D00429D7D /* GalleryHeaderView.swift in Sources */,
 				7018270619EC68BB00635CEF /* GalleryViewController.swift in Sources */,
 				701826D519EC633900635CEF /* PhotoFilters.xcdatamodeld in Sources */,
 				701826D219EC633900635CEF /* AppDelegate.swift in Sources */,
+				7018DA2B19ECA1BB00429D7D /* GalleryFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +479,7 @@
 				701826F019EC633900635CEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		701826F119EC633900635CEF /* Build configuration list for PBXNativeTarget "PhotoFiltersTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +488,7 @@
 				701826F319EC633900635CEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

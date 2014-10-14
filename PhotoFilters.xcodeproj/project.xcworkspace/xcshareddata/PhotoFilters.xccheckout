@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>D315C12DB03D12006668E1D308B7A709FBB06F04</key>
-		<string>../../../../sea-b23-iOS</string>
+		<string>../../../sea-b23-iOS</string>
 		<key>FF352BF5018C3865B9F15F7EB64C11B2926FF5B4</key>
 		<string>../..</string>
 	</dict>

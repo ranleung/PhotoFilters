@@ -21,6 +21,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SHOW_GALLERY" {
             let destinationVC = segue.destinationViewController as GalleryViewController
+            //Setting the destinationVC's delegate back to self.
             destinationVC.delegate = self
         }
     }
@@ -45,6 +46,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
                 
             }
             imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            //Setting the destinationVC's delegate back to self.
             imagePicker.delegate = self
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
@@ -61,8 +63,10 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //The function that will be called on by the custom delegate
     func didTapOnPicture(image: UIImage?) {
         println("did tap on picture")
+        //From the custom delegate, the image is now the self.imageView.image
         self.imageView.image = image
     }
     
