@@ -28,6 +28,7 @@
 		707065E619EDA0490072DC94 /* CoreDataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707065E519EDA0490072DC94 /* CoreDataSeeder.swift */; };
 		707065EC19EDA1AD0072DC94 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707065EB19EDA1AD0072DC94 /* Filter.swift */; };
 		708B7FA519EDB7A100C34812 /* FilterThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708B7FA419EDB7A100C34812 /* FilterThumbnail.swift */; };
+		708B7FA719EDBD3600C34812 /* FilterThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		707065E519EDA0490072DC94 /* CoreDataSeeder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSeeder.swift; sourceTree = "<group>"; };
 		707065EB19EDA1AD0072DC94 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = ../Filter.swift; sourceTree = "<group>"; };
 		708B7FA419EDB7A100C34812 /* FilterThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterThumbnail.swift; sourceTree = "<group>"; };
+		708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterThumbnailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */,
 				701826DD19EC633900635CEF /* LaunchScreen.xib */,
 				701826D819EC633900635CEF /* Main.storyboard */,
+				708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -175,8 +178,8 @@
 		701826F619EC639F00635CEF /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
-				707065E519EDA0490072DC94 /* CoreDataSeeder.swift */,
 				708B7FA419EDB7A100C34812 /* FilterThumbnail.swift */,
+				707065E519EDA0490072DC94 /* CoreDataSeeder.swift */,
 			);
 			name = "Model Layer";
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				7018270619EC68BB00635CEF /* GalleryViewController.swift in Sources */,
 				701826D519EC633900635CEF /* PhotoFilters.xcdatamodeld in Sources */,
 				701826D219EC633900635CEF /* AppDelegate.swift in Sources */,
+				708B7FA719EDBD3600C34812 /* FilterThumbnailCell.swift in Sources */,
 				707065EC19EDA1AD0072DC94 /* Filter.swift in Sources */,
 				7018DA2B19ECA1BB00429D7D /* GalleryFooterView.swift in Sources */,
 			);

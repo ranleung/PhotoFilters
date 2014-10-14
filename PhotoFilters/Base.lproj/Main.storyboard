@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo2" translatesAutoresizingMaskIntoConstraints="NO" id="13Y-At-UTB">
-                                <rect key="frame" x="36" y="72" width="529" height="419"/>
+                                <rect key="frame" x="36" y="72" width="528" height="419"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-D9-KtD">
@@ -42,7 +42,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FILTER_CELL" id="uov-Au-4i1">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FILTER_CELL" id="uov-Au-4i1" customClass="FilterThumbnailCell" customModule="PhotoFilters" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -50,17 +50,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fcs-r3-ONp">
-                                                    <rect key="frame" x="0.0" y="2" width="87" height="98"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="98"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Fcs-r3-ONp" secondAttribute="trailing" constant="-8" id="9dr-lR-YAJ"/>
-                                            <constraint firstItem="Fcs-r3-ONp" firstAttribute="leading" secondItem="uov-Au-4i1" secondAttribute="leadingMargin" constant="-8" id="Cdg-7C-R40"/>
-                                            <constraint firstItem="Fcs-r3-ONp" firstAttribute="top" secondItem="uov-Au-4i1" secondAttribute="topMargin" constant="-6" id="V7X-2C-bMz"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="Fcs-r3-ONp" secondAttribute="bottom" constant="-8" id="VSY-KR-NB4"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Fcs-r3-ONp" secondAttribute="bottom" constant="-6" id="cWs-2q-gLc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fcs-r3-ONp" secondAttribute="trailing" id="dXG-oq-Bsb"/>
+                                            <constraint firstItem="Fcs-r3-ONp" firstAttribute="top" secondItem="uov-Au-4i1" secondAttribute="top" id="mcj-qd-rKI"/>
+                                            <constraint firstItem="Fcs-r3-ONp" firstAttribute="leading" secondItem="uov-Au-4i1" secondAttribute="leading" id="r3H-W3-h8R"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Fcs-r3-ONp" id="mGy-ge-y3L"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -72,20 +75,26 @@
                             <constraint firstItem="13Y-At-UTB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="EUu-cS-rDO"/>
                             <constraint firstItem="13Y-At-UTB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="G5G-u9-aFO"/>
                             <constraint firstItem="89D-5z-abq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="W7M-zW-ADW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="13Y-At-UTB" secondAttribute="trailing" constant="19" id="mFc-l6-xBL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="13Y-At-UTB" secondAttribute="trailing" constant="20" id="mFc-l6-xBL"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="13Y-At-UTB" secondAttribute="bottom" constant="109" id="mTX-zt-FAp"/>
+                            <constraint firstItem="VZZ-D9-KtD" firstAttribute="centerX" secondItem="89D-5z-abq" secondAttribute="centerX" id="q5W-LU-MSQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="89D-5z-abq" secondAttribute="trailing" constant="-16" id="u5N-J1-sJK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VZZ-D9-KtD" secondAttribute="bottom" constant="20" id="zWo-IG-yZR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DxH-SC-m6b"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="8cP-DK-6tP"/>
                     <connections>
                         <outlet property="collectionView" destination="89D-5z-abq" id="kTI-f7-B5O"/>
-                        <outlet property="collectionViewBottomConstraint" destination="Jb5-qB-l1U" id="cqY-za-mUb"/>
+                        <outlet property="collectionViewBottomConstraint" destination="mTX-zt-FAp" id="ab6-XV-UK8"/>
+                        <outlet property="collectionViewLeadingConstraint" destination="G5G-u9-aFO" id="LiA-Tf-G1f"/>
+                        <outlet property="collectionViewTopConstraint" destination="EUu-cS-rDO" id="XO5-VV-SFz"/>
+                        <outlet property="collectionViewTrailingConstraint" destination="mFc-l6-xBL" id="tkD-fp-oJp"/>
                         <outlet property="imageView" destination="13Y-At-UTB" id="wpy-KY-Ii1"/>
-                        <outlet property="imageViewBottomConstraint" destination="VSY-KR-NB4" id="e8X-mv-il4"/>
-                        <outlet property="imageViewLeadingConstraint" destination="Cdg-7C-R40" id="phd-ix-Qf0"/>
-                        <outlet property="imageViewTrailingConstraint" destination="9dr-lR-YAJ" id="I3K-vK-NuB"/>
                         <segue destination="oIo-p1-RkI" kind="presentation" identifier="SHOW_GALLERY" id="gzJ-ib-LFC"/>
                     </connections>
                 </viewController>
@@ -107,10 +116,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-b3-M9S">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="BKY-V2-KOk"/>
-                                    <constraint firstAttribute="height" constant="600" id="xOS-Yh-kxf"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xLC-TV-u9M">
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
@@ -148,7 +153,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmw-TO-cgC">
-                                            <rect key="frame" x="272" y="15" width="56" height="20.5"/>
+                                            <rect key="frame" x="272" y="15" width="56" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -187,16 +192,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZCz-b3-M9S" firstAttribute="top" secondItem="QQN-uH-lNT" secondAttribute="topMargin" id="5tk-ue-RYl"/>
                             <constraint firstItem="ZCz-b3-M9S" firstAttribute="bottom" secondItem="SEd-Iw-IUT" secondAttribute="top" id="Cxj-ze-ijK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZCz-b3-M9S" secondAttribute="trailing" id="Ixu-qL-2Tc"/>
-                            <constraint firstItem="ZCz-b3-M9S" firstAttribute="leading" secondItem="QQN-uH-lNT" secondAttribute="leadingMargin" id="JoW-Oy-dNQ"/>
+                            <constraint firstItem="ZCz-b3-M9S" firstAttribute="trailing" secondItem="SEd-Iw-IUT" secondAttribute="trailing" id="Lha-vc-UkK"/>
+                            <constraint firstItem="SEd-Iw-IUT" firstAttribute="top" secondItem="ZCz-b3-M9S" secondAttribute="bottom" id="Q6Y-Us-mip"/>
                             <constraint firstItem="ZCz-b3-M9S" firstAttribute="top" secondItem="QQN-uH-lNT" secondAttribute="topMargin" id="cVq-0J-gW8"/>
+                            <constraint firstItem="ZCz-b3-M9S" firstAttribute="leading" secondItem="QQN-uH-lNT" secondAttribute="leadingMargin" constant="-16" id="dcn-SO-Ma8"/>
                             <constraint firstItem="ZCz-b3-M9S" firstAttribute="leading" secondItem="CaR-hf-z6Q" secondAttribute="leading" id="gqE-ul-Sti"/>
+                            <constraint firstItem="ZCz-b3-M9S" firstAttribute="top" secondItem="QQN-uH-lNT" secondAttribute="topMargin" id="jre-FI-txZ"/>
+                            <constraint firstItem="SEd-Iw-IUT" firstAttribute="top" secondItem="ZCz-b3-M9S" secondAttribute="bottom" id="v89-GH-uXj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZCz-b3-M9S" secondAttribute="trailing" constant="-16" id="xlJ-2j-JAR"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Ixu-qL-2Tc"/>
-                                <exclude reference="JoW-Oy-dNQ"/>
+                                <exclude reference="Cxj-ze-ijK"/>
+                                <exclude reference="Lha-vc-UkK"/>
+                                <exclude reference="cVq-0J-gW8"/>
+                                <exclude reference="gqE-ul-Sti"/>
+                                <exclude reference="jre-FI-txZ"/>
+                                <exclude reference="v89-GH-uXj"/>
                             </mask>
                         </variation>
                     </view>
@@ -206,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o9k-d1-g5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="136"/>
+            <point key="canvasLocation" x="1832" y="-108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7sc-Xr-gaY">

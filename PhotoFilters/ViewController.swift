@@ -13,11 +13,12 @@ import CoreData
 
 class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource  {
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewTrailingConstraint: NSLayoutConstraint!
     
     @IBOutlet var imageView: UIImageView!
     
@@ -25,6 +26,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     
     //core data array
     var filters = [Filter]()
+    //array of thumbnail wrapper objects
     var filterThumbnails = [FilterThumbnail]()
     
     override func viewDidLoad() {
@@ -119,7 +121,20 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FILTER_CELL", forIndexPath: indexPath) as FilterThumbnailCell
+        var filterThumbnail = self.filterThumbnails[indexPath.row]
+        //Lazy Loading
+        if filterThumbnail.filteredThumbnail != nil {
+            cell.imageView.image = filterThumbnail.filteredThumbnail
+        } else {
+            cell.imageView.image = filterThumbnail.originalThumbnail
+            filterThumbnail.generateThumbnail({ (image) -> Void in
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FilterThumbnailCell {
+                    cell.imageView.image = image
+                }
+            })
+        }
+        return cell
     }
 
 }
