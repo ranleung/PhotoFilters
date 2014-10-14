@@ -35,9 +35,18 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         super.viewDidLoad()
         var image = UIImage(named: "photo2.jpg")
         
+        //Setting up our core image context
+        self.generateThumbnail()
+        var options = [kCIContextWorkingColorSpace: NSNull()]
+        var myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        self.context = CIContext(EAGLContext: myEAGLContext, options: options)
+        
+        
         var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
+        seeder.seedCoreData()
         
         self.fetchFilters()
         self.resetFilterThumbnails()
@@ -62,12 +71,20 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.navigationItem.rightBarButtonItem = doneButton
     }
     
-    func exitFilteringMode() {
-        
-    }
-    
     func fetchFilters() {
+        //An instance of NSFetchRequest describes search criteria used to retrieve data from a persistent store.
+        var fetchRequest = NSFetchRequest(entityName: "Filter")
         
+        var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context = appDelegate.managedObjectContext
+        
+        var error: NSError?
+        //Returns an array of objects that meet the criteria specified by a given fetch request.
+        let fetchResults = context?.executeFetchRequest(fetchRequest, error: &error)
+        if let filters = fetchResults as? [Filter] {
+            println("Number of filters: \(filters.count)")
+            self.filters = filters
+        }
     }
     
     func resetFilterThumbnails() {
@@ -81,6 +98,10 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             newFilters.append(thumbnail)
         }
         self.filterThumbnails = newFilters
+    }
+    
+    func exitFilteringMode() {
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
