@@ -9,7 +9,7 @@
 import UIKit
 
 //Creating a custom delegate
-protocol GalleryDelegate {
+protocol GalleryDelegate : class {
     func didTapOnPicture(image: UIImage?)
 }
 
@@ -17,12 +17,11 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     @IBOutlet var collectionView: UICollectionView!
     
-    //This can be any type since its a protocol now
-    var delegate: GalleryDelegate?
+    //This can be any type since its a protocol now, must be optional
+    weak var delegate: GalleryDelegate?
 
     //Creating an empty array for image storage
     var images = [UIImage]()
-    var header: GalleryHeaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()

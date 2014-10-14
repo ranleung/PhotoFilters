@@ -25,6 +25,8 @@
 		7018270819EC6D0C00635CEF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018270719EC6D0C00635CEF /* GalleryCell.swift */; };
 		7018DA2919ECA18D00429D7D /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */; };
 		7018DA2B19ECA1BB00429D7D /* GalleryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */; };
+		707065E619EDA0490072DC94 /* CoreDataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707065E519EDA0490072DC94 /* CoreDataSeeder.swift */; };
+		707065EC19EDA1AD0072DC94 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707065EB19EDA1AD0072DC94 /* Filter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		7018270719EC6D0C00635CEF /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryHeaderView.swift; sourceTree = "<group>"; };
 		7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryFooterView.swift; sourceTree = "<group>"; };
+		707065E519EDA0490072DC94 /* CoreDataSeeder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSeeder.swift; sourceTree = "<group>"; };
+		707065EB19EDA1AD0072DC94 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = ../Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +105,14 @@
 		701826CE19EC633900635CEF /* PhotoFilters */ = {
 			isa = PBXGroup;
 			children = (
+				701826D119EC633900635CEF /* AppDelegate.swift */,
+				707065EB19EDA1AD0072DC94 /* Filter.swift */,
 				701826F419EC638B00635CEF /* Controller Layer */,
-				701826D619EC633900635CEF /* ViewController.swift */,
 				701826F619EC639F00635CEF /* Model Layer */,
 				701826F519EC639500635CEF /* View Layer */,
 				701826DB19EC633900635CEF /* Images.xcassets */,
 				701826D319EC633900635CEF /* PhotoFilters.xcdatamodeld */,
 				701826CF19EC633900635CEF /* Supporting Files */,
-				701826D119EC633900635CEF /* AppDelegate.swift */,
 			);
 			path = PhotoFilters;
 			sourceTree = "<group>";
@@ -148,6 +152,8 @@
 		701826F419EC638B00635CEF /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				701826D619EC633900635CEF /* ViewController.swift */,
+				7018270519EC68BB00635CEF /* GalleryViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -155,12 +161,11 @@
 		701826F519EC639500635CEF /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				7018270519EC68BB00635CEF /* GalleryViewController.swift */,
-				701826DD19EC633900635CEF /* LaunchScreen.xib */,
-				701826D819EC633900635CEF /* Main.storyboard */,
 				7018270719EC6D0C00635CEF /* GalleryCell.swift */,
 				7018DA2819ECA18D00429D7D /* GalleryHeaderView.swift */,
 				7018DA2A19ECA1BB00429D7D /* GalleryFooterView.swift */,
+				701826DD19EC633900635CEF /* LaunchScreen.xib */,
+				701826D819EC633900635CEF /* Main.storyboard */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 		701826F619EC639F00635CEF /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				707065E519EDA0490072DC94 /* CoreDataSeeder.swift */,
 			);
 			name = "Model Layer";
 			sourceTree = "<group>";
@@ -281,10 +287,12 @@
 			files = (
 				701826D719EC633900635CEF /* ViewController.swift in Sources */,
 				7018270819EC6D0C00635CEF /* GalleryCell.swift in Sources */,
+				707065E619EDA0490072DC94 /* CoreDataSeeder.swift in Sources */,
 				7018DA2919ECA18D00429D7D /* GalleryHeaderView.swift in Sources */,
 				7018270619EC68BB00635CEF /* GalleryViewController.swift in Sources */,
 				701826D519EC633900635CEF /* PhotoFilters.xcdatamodeld in Sources */,
 				701826D219EC633900635CEF /* AppDelegate.swift in Sources */,
+				707065EC19EDA1AD0072DC94 /* Filter.swift in Sources */,
 				7018DA2B19ECA1BB00429D7D /* GalleryFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
