@@ -11,7 +11,7 @@ import CoreImage
 import OpenGLES
 import CoreData
 
-class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource  {
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
@@ -20,6 +20,12 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     @IBOutlet var imageViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet var imageView: UIImageView!
+    
+    let imageQueue = NSOperationQueue()
+    
+    //core data array
+    var filters = [Filter]()
+    var filterThumbnails = [FilterThumbnail]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +113,14 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.imageView.image = image
     }
     
+    //For the collectionView, number of filters in the section
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.filters.count
+    }
     
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+    }
 
 }
 
