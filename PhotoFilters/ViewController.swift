@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreImage
+import OpenGLES
 import CoreData
 
 class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var imageViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet var imageView: UIImageView!
     
