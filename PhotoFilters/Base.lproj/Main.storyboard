@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo2" translatesAutoresizingMaskIntoConstraints="NO" id="13Y-At-UTB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo2" translatesAutoresizingMaskIntoConstraints="NO" id="13Y-At-UTB">
                                 <rect key="frame" x="36" y="72" width="528" height="419"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -90,11 +90,11 @@
                     <navigationItem key="navigationItem" id="8cP-DK-6tP"/>
                     <connections>
                         <outlet property="collectionView" destination="89D-5z-abq" id="kTI-f7-B5O"/>
-                        <outlet property="collectionViewBottomConstraint" destination="mTX-zt-FAp" id="ab6-XV-UK8"/>
-                        <outlet property="collectionViewLeadingConstraint" destination="G5G-u9-aFO" id="LiA-Tf-G1f"/>
-                        <outlet property="collectionViewTopConstraint" destination="EUu-cS-rDO" id="XO5-VV-SFz"/>
-                        <outlet property="collectionViewTrailingConstraint" destination="mFc-l6-xBL" id="tkD-fp-oJp"/>
+                        <outlet property="collectionViewBottomConstraint" destination="43V-ms-68Z" id="X54-v0-xFR"/>
                         <outlet property="imageView" destination="13Y-At-UTB" id="wpy-KY-Ii1"/>
+                        <outlet property="imageViewBottomConstraint" destination="mTX-zt-FAp" id="9Kp-cL-yzx"/>
+                        <outlet property="imageViewLeadingConstraint" destination="G5G-u9-aFO" id="pap-La-BnR"/>
+                        <outlet property="imageViewTrailingConstraint" destination="mFc-l6-xBL" id="zF0-Yq-RAt"/>
                         <segue destination="oIo-p1-RkI" kind="presentation" identifier="SHOW_GALLERY" id="gzJ-ib-LFC"/>
                     </connections>
                 </viewController>

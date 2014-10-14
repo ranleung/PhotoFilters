@@ -14,15 +14,17 @@ import CoreData
 class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource  {
     
     @IBOutlet weak var collectionView: UICollectionView!
+
+    @IBOutlet var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var imageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet var collectionViewTrailingConstraint: NSLayoutConstraint!
+ 
     @IBOutlet var imageView: UIImageView!
     
     let imageQueue = NSOperationQueue()
     
-    //core data array
+    //core data array, NSManagedObject
     var filters = [Filter]()
     //array of thumbnail wrapper objects
     var filterThumbnails = [FilterThumbnail]()
@@ -37,9 +39,48 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
         
+        self.fetchFilters()
+        self.resetFilterThumbnails()
+        
         println(image.size)
         self.collectionView.dataSource = self
         
+    }
+    
+    func enterFilterMode() {
+        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 2
+        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant * 2
+        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 2
+        self.collectionViewBottomConstraint.constant = 100
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            //Lays out the subviews immediately.
+            self.view.layoutIfNeeded()
+        })
+        
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "exitFilteringMode")
+        self.navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func exitFilteringMode() {
+        
+    }
+    
+    func fetchFilters() {
+        
+    }
+    
+    func resetFilterThumbnails() {
+        var newFilters = [FilterThumbnail]()
+        for var i = 0; i < self.filters.count; ++i {
+            var filter = self.filters[i]
+            //From the NSManagedObject
+            var filterName = filter.name
+            //Look over this
+            var thumbnail = FilterThumbnail(name: filterName, thumbnail: self.originalThumbnail!, queue: self.imageQueue, context: self.context!)
+            newFilters.append(thumbnail)
+        }
+        self.filterThumbnails = newFilters
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -89,7 +130,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         //Filters
         let filterAction = UIAlertAction(title: "Filters", style: UIAlertActionStyle.Default) { (action) -> Void in
-            
+            self.enterFilterMode()
         }
         
         //Attaching an action object to the alert or action sheet.
@@ -121,14 +162,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //The function that will be called on by the custom delegate
-    func didTapOnPicture(image: UIImage?) {
-        println("did tap on picture")
-        //From the custom delegate, the image is now the self.imageView.image
-        self.imageView.image = image
-        self.generateThumbnail()
-    }
-    
     //For the collectionView, number of filters in the section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filters.count
@@ -149,6 +182,15 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             })
         }
         return cell
+    }
+    
+    //The function that will be called on by the custom delegate
+    func didTapOnPicture(image: UIImage?) {
+        println("did tap on picture")
+        //From the custom delegate, the image is now the self.imageView.image
+        self.imageView.image = image
+        self.generateThumbnail()
+        self.resetFilterThumbnails()
     }
 
 }
