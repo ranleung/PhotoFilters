@@ -45,7 +45,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
-        //seeder.seedCoreData()
+        seeder.seedCoreData()
         
         self.fetchFilters()
         self.resetFilterThumbnails()
