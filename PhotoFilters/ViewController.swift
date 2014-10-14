@@ -35,25 +35,43 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         let galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (action) -> Void in
             self.performSegueWithIdentifier("SHOW_GALLERY", sender: self)
         }
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        //Setting the destinationVC's delegate back to self.
+        imagePicker.delegate = self
+        
         //Cancal Action
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
         }
-        //Camera Action
-        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (action) -> Void in
-            let imagePicker = UIImagePickerController()
-            imagePicker.allowsEditing = true
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-                
+        //Photo Library
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default) { (action) -> Void in
+            //UIDevice provides a singleton instance representing the current device
+            if UIDevice.currentDevice().model == "iPhone Simulator" {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            } else {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             }
-            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-            //Setting the destinationVC's delegate back to self.
-            imagePicker.delegate = self
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
         
+        //Camera Action
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (action) -> Void in
+            
+            //imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            //Putting the image picked to presentViewController
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        
+        
         alertController.addAction(galleryAction)
         alertController.addAction(cancelAction)
-        alertController.addAction(cameraAction)
+        alertController.addAction(photoLibraryAction)
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            alertController.addAction(cameraAction)
+        }
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     

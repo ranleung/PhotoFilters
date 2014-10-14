@@ -68,12 +68,13 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     //For Gallery Header and Footer
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         //For Header
+        //A supplementary view that identifies the header for a given section.
         if kind == UICollectionElementKindSectionHeader {
-            var headerView: GalleryHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "GALLERY_HEADER", forIndexPath: indexPath) as GalleryHeaderView
+            var headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "GALLERY_HEADER", forIndexPath: indexPath) as GalleryHeaderView
             headerView.headerLabel.text = "My Trip"
             return headerView
         } else {
-            var footerView: GalleryFooterView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "GALLERY_FOOTER", forIndexPath: indexPath) as GalleryFooterView
+            var footerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "GALLERY_FOOTER", forIndexPath: indexPath) as GalleryFooterView
             footerView.footerLabel.text = "\(self.images.count) Photos"
             return footerView
         }
