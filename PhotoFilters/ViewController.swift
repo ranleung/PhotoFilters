@@ -223,11 +223,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         filteredImageSelected.filterImage(self.imageView.image!, completionHandler: { (filteredImage) -> Void in
             self.imageView!.image = filteredImage
         })
-//        var filteredImage = FilterThumbnail(name: self.filters[indexPath.row].name, thumbnail: self.imageView.image!, queue: imageQueue, context: self.context!)
-//        
-//        filteredImage.generateThumbnail { (image) -> Void in
-//            self.imageView.image = image
-//        }
     }
     
     //The function that will be called on by the custom delegate
