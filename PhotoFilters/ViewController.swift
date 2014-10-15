@@ -52,6 +52,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.fetchFilters()
         self.resetFilterThumbnails()
         
+        self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
     }
@@ -69,6 +70,19 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "exitFilteringMode")
         self.navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func exitFilteringMode() {
+        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant / 2
+        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant / 2
+        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant / 2
+        self.collectionViewBottomConstraint.constant = -100
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            //Lays out the subviews immediately.
+            self.view.layoutIfNeeded()
+        })
+        self.navigationItem.rightBarButtonItem = nil
     }
     
     func fetchFilters() {
@@ -98,19 +112,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             newFilters.append(thumbnail)
         }
         self.filterThumbnails = newFilters
-    }
-    
-    func exitFilteringMode() {
-        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant / 2
-        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant / 2
-        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant / 2
-        self.collectionViewBottomConstraint.constant = -100
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            //Lays out the subviews immediately.
-            self.view.layoutIfNeeded()
-        })
-        self.navigationItem.rightBarButtonItem = nil
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -216,9 +217,17 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     
     //For applying filters to the main picture
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("Clicked")
         let filteredImageSelected = self.filterThumbnails[indexPath.row]
         
-        
+        filteredImageSelected.filterImage(self.imageView.image!, completionHandler: { (filteredImage) -> Void in
+            self.imageView!.image = filteredImage
+        })
+//        var filteredImage = FilterThumbnail(name: self.filters[indexPath.row].name, thumbnail: self.imageView.image!, queue: imageQueue, context: self.context!)
+//        
+//        filteredImage.generateThumbnail { (image) -> Void in
+//            self.imageView.image = image
+//        }
     }
     
     //The function that will be called on by the custom delegate
@@ -232,4 +241,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     }
 
 }
+
+
+
+
 
