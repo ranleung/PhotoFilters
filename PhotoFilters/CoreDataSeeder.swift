@@ -51,6 +51,7 @@ class CoreDataSeeder {
         
         
         var error: NSError?
+        //& is actually memory address, instead of pointer
         self.managedObjectContext?.save(&error)
         
         if error != nil {

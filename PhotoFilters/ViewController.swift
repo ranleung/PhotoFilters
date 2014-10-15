@@ -33,6 +33,9 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     
     var delegate: GalleryDelegate?
     
+    //Did this in CoreDataSeeder.swift
+    var managedObjectContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var image = UIImage(named: "photo2.jpg")
@@ -44,12 +47,25 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.context = CIContext(EAGLContext: myEAGLContext, options: options)
         
         var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        //Did this in CoreDataSeeder.swift
+        self.managedObjectContext = appDelegate.managedObjectContext
         
         //Seeding Core Data
         var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
-        //seeder.seedCoreData()
         
-        self.fetchFilters()
+        let fetchRequest = NSFetchRequest(entityName: "Filter")
+        var error: NSError?
+        if let filters = self.managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as? [Filter] {
+            if filters.isEmpty {
+                seeder.seedCoreData()
+                self.filters = self.managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as [Filter]
+            } else {
+                self.filters = filters
+            }
+        }
+        
+        //self.fetchFilters()
+        println("Number of filters: \(filters.count)")
         self.resetFilterThumbnails()
         
         self.collectionView.delegate = self
