@@ -85,6 +85,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.navigationItem.rightBarButtonItem = nil
     }
     
+    //Getting filters from Core Data and storing in self.filters
     func fetchFilters() {
         //An instance of NSFetchRequest describes search criteria used to retrieve data from a persistent store.
         var fetchRequest = NSFetchRequest(entityName: "Filter")
@@ -101,13 +102,14 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         }
     }
     
+    //From self.filters(Core Data), putting it into self.filterThumbnails
     func resetFilterThumbnails() {
         var newFilters = [FilterThumbnail]()
         for var i = 0; i < self.filters.count; ++i {
             var filter = self.filters[i]
             //From the NSManagedObject
             var filterName = filter.name
-            //Look over this
+            //Initializing with FilterThumbnail
             var thumbnail = FilterThumbnail(name: filterName, thumbnail: self.originalThumbnail!, queue: self.imageQueue, context: self.context!)
             newFilters.append(thumbnail)
         }
