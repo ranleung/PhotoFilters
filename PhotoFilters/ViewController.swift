@@ -93,6 +93,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             var filterName = filter.name
             //Initializing with FilterThumbnail
             var thumbnail = FilterThumbnail(name: filterName, thumbnail: self.originalThumbnail!, queue: self.imageQueue, context: self.context!)
+            //Class instances append to newFilters
             newFilters.append(thumbnail)
         }
         self.filterThumbnails = newFilters
@@ -207,7 +208,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         if filterThumbnail.filteredThumbnail != nil {
             cell.imageView.image = filterThumbnail.filteredThumbnail
         } else {
-            cell.imageView.image = filterThumbnail.originalThumbnail
+            //cell.imageView.image = filterThumbnail.originalThumbnail
+            //filterThumbnail is a class instance
             filterThumbnail.generateThumbnail({ (image) -> Void in
                 if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FilterThumbnailCell {
                     cell.imageView.image = image
