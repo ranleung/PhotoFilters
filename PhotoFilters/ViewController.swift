@@ -114,6 +114,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             newFilters.append(thumbnail)
         }
         self.filterThumbnails = newFilters
+        self.collectionView.reloadData()
     }
     
     func enterFilterMode() {
