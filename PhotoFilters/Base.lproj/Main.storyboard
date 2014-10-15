@@ -96,11 +96,30 @@
                         <outlet property="imageViewLeadingConstraint" destination="G5G-u9-aFO" id="pap-La-BnR"/>
                         <outlet property="imageViewTrailingConstraint" destination="mFc-l6-xBL" id="zF0-Yq-RAt"/>
                         <segue destination="oIo-p1-RkI" kind="presentation" identifier="SHOW_GALLERY" id="gzJ-ib-LFC"/>
+                        <segue destination="cZd-9m-CU7" kind="presentation" identifier="SHOW_PHOTOS_FRAMEWORK" id="CWq-Ah-2R1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="951" y="136"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ks5-lM-ToW">
+            <objects>
+                <viewController id="cZd-9m-CU7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xl7-B5-pDC"/>
+                        <viewControllerLayoutGuide type="bottom" id="jmL-Vf-DHK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yu6-uf-Aca">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="td0-Uc-LdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="920"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="PsV-f1-7B0">

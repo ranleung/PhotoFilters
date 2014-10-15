@@ -39,9 +39,9 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         var image = UIImage(named: "photo2.jpg")
-        
-        //Setting up our core image context
         self.generateThumbnail()
+        
+        //Setting up GPU Context
         var options = [kCIContextWorkingColorSpace: NSNull()]
         var myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
         self.context = CIContext(EAGLContext: myEAGLContext, options: options)
@@ -145,14 +145,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.navigationItem.rightBarButtonItem = nil
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SHOW_GALLERY" {
-            let destinationVC = segue.destinationViewController as GalleryViewController
-            //Setting the destinationVC's delegate back to self.
-            destinationVC.delegate = self
-        }
-    }
-    
     @IBAction func photosPressed(sender: AnyObject) {
         println("Button Pressed")
         
@@ -190,21 +182,37 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
         
+        //Photos Framework
+        let photosFrameworkAction = UIAlertAction(title: "Photos Framework", style: UIAlertActionStyle.Default) { (action) -> Void in
+            //Create the segeue
+            self.performSegueWithIdentifier("SHOW_PHOTOS_FRAMEWORK", sender: self)
+        }
+        
         //Filters
         let filterAction = UIAlertAction(title: "Filters", style: UIAlertActionStyle.Default) { (action) -> Void in
             self.enterFilterMode()
         }
         
+        
         //Attaching an action object to the alert or action sheet.
         alertController.addAction(galleryAction)
         alertController.addAction(cancelAction)
         alertController.addAction(photoLibraryAction)
+        alertController.addAction(photosFrameworkAction)
         alertController.addAction(filterAction)
         //Check to see if the device has a Camera, if yes, present the option for Camera
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             alertController.addAction(cameraAction)
         }
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SHOW_GALLERY" {
+            let destinationVC = segue.destinationViewController as GalleryViewController
+            //Setting the destinationVC's delegate back to self.
+            destinationVC.delegate = self
+        }
     }
     
     //Being called automatically from the delegate
