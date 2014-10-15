@@ -47,11 +47,33 @@ class FilterThumbnail {
             self.filter = imageFilter
             self.filteredThumbnail = UIImage(CGImage: imageRef)
             
+            //Back to main queue to pass back the image
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     completionHandler(image: self.filteredThumbnail!)
             })
             
         }
+    }
+    
+    func filterImage (image : UIImage, completionHandler : (filteredImage : UIImage) -> Void) {
+        //Going to a different thread
+        self.imageQueue.addOperationWithBlock({ () -> Void in
+            //Setting up the filter with a CIImage
+            var image = CIImage(image: image)
+            self.filter!.setValue(image, forKey: kCIInputImageKey)
+            
+            //Generate the results
+            var result = self.filter!.valueForKey(kCIOutputImageKey) as? CIImage
+            var extent = result!.extent()
+            //Filters in createCGImage
+            var imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
+            let filteredImage = UIImage(CGImage: imageRef)
+            
+            //Back to main queue to pass back the image
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(filteredImage: filteredImage)
+            })
+        })
     }
     
     

@@ -11,7 +11,7 @@ import CoreImage
 import OpenGLES
 import CoreData
 
-class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource  {
+class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate  {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -30,6 +30,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     var filterThumbnails = [FilterThumbnail]()
     var context: CIContext?
     var originalThumbnail: UIImage?
+    
+    var delegate: GalleryDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,6 +212,13 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             })
         }
         return cell
+    }
+    
+    //For applying filters to the main picture
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let filteredImageSelected = self.filterThumbnails[indexPath.row]
+        
+        
     }
     
     //The function that will be called on by the custom delegate
