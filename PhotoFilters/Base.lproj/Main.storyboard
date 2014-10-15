@@ -152,10 +152,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jmL-Vf-DHK" firstAttribute="top" secondItem="cBr-Ru-M0u" secondAttribute="bottom" id="9jY-Y7-GcC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cBr-Ru-M0u" secondAttribute="trailing" constant="-23" id="X5q-pX-GNS"/>
-                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="top" secondItem="yu6-uf-Aca" secondAttribute="topMargin" constant="20" id="rxK-82-Uiw"/>
-                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="leading" secondItem="yu6-uf-Aca" secondAttribute="leadingMargin" constant="-16" id="tpL-WN-sQk"/>
+                            <constraint firstItem="jmL-Vf-DHK" firstAttribute="top" secondItem="cBr-Ru-M0u" secondAttribute="bottom" id="13n-h0-fDX"/>
+                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="leading" secondItem="yu6-uf-Aca" secondAttribute="leadingMargin" constant="-16" id="19B-ws-pAT"/>
+                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="top" secondItem="yu6-uf-Aca" secondAttribute="topMargin" constant="20" id="HCQ-61-Z9S"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cBr-Ru-M0u" secondAttribute="trailing" constant="-23" id="SU1-Cf-xMM"/>
                         </constraints>
                     </view>
                     <connections>

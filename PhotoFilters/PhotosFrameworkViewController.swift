@@ -9,10 +9,12 @@
 import UIKit
 import Photos
 
-class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSource {
+
+class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet var collectionView: UICollectionView!
     
+    weak var delegate: PhotoDelegate?
     
     //Fetches or generates image data for photo or video assets.
     var imageManager: PHCachingImageManager!
@@ -24,7 +26,7 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
     var assetCollection: PHAssetCollection!
 
     
-    var assetCellSize: CGSize!    
+    var assetCellSize: CGSize!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,7 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
         self.assetCellSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale)
         
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,16 +65,30 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
         
         var asset = self.assetFetchResults[indexPath.row] as PHAsset
         
-        self.imageManager.requestImageForAsset(asset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
+        self.imageManager.requestImageForAsset(asset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFit, options: nil) { (image, info) -> Void in
             
             if cell.tag == currentTag {
                 cell.imageView.image = image
             }
-            
         }
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var newImage: UIImage?
+        var asset = self.assetFetchResults[indexPath.row] as PHAsset
+        
+        self.imageManager.requestImageDataForAsset(asset, options: nil) { (data, string, orientation, info) -> Void in
+            newImage = UIImage(data: data)
+            self.delegate?.didTapOnPicture(newImage)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+    }
+    
 
+    
 }
 
 

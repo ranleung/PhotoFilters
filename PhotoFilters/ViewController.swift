@@ -11,7 +11,7 @@ import CoreImage
 import OpenGLES
 import CoreData
 
-class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate  {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PhotoDelegate  {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -30,8 +30,10 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     var filterThumbnails = [FilterThumbnail]()
     var context: CIContext?
     var originalThumbnail: UIImage?
+    var filteredImage: UIImage?
+    var unFilteredImage: UIImage?
     
-    var delegate: GalleryDelegate?
+    var delegate: PhotoDelegate?
     
     //Did this in CoreDataSeeder.swift
     var managedObjectContext: NSManagedObjectContext!
@@ -211,6 +213,9 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             let destinationVC = segue.destinationViewController as GalleryViewController
             //Setting the destinationVC's delegate back to self.
             destinationVC.delegate = self
+        } else if segue.identifier == "SHOW_PHOTOS_FRAMEWORK" {
+            let destinationVC = segue.destinationViewController as PhotosFrameworkViewController
+            destinationVC.delegate = self
         }
     }
     
@@ -251,6 +256,10 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         let filteredImageSelected = self.filterThumbnails[indexPath.row]
         
         filteredImageSelected.filterImage(self.imageView.image!, completionHandler: { (filteredImage) -> Void in
+            if self.imageView!.image == self.filteredImage {
+                self.imageView!.image = self.unFilteredImage
+            }
+            self.filteredImage = filteredImage
             self.imageView!.image = filteredImage
         })
     }
@@ -260,14 +269,11 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
         self.imageView.image = image
+        self.unFilteredImage = image
         self.generateThumbnail()
         self.resetFilterThumbnails()
         self.collectionView.reloadData()
     }
 
 }
-
-
-
-
 
