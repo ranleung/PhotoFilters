@@ -29,6 +29,8 @@
 		707065EC19EDA1AD0072DC94 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707065EB19EDA1AD0072DC94 /* Filter.swift */; };
 		708B7FA519EDB7A100C34812 /* FilterThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708B7FA419EDB7A100C34812 /* FilterThumbnail.swift */; };
 		708B7FA719EDBD3600C34812 /* FilterThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */; };
+		70F28AE319EF0E5B00B92971 /* PhotosFrameworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F28AE219EF0E5B00B92971 /* PhotosFrameworkViewController.swift */; };
+		70F28AE519EF106100B92971 /* PhotosFrameworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F28AE419EF106100B92971 /* PhotosFrameworkCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		707065EB19EDA1AD0072DC94 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = ../Filter.swift; sourceTree = "<group>"; };
 		708B7FA419EDB7A100C34812 /* FilterThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterThumbnail.swift; sourceTree = "<group>"; };
 		708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterThumbnailCell.swift; sourceTree = "<group>"; };
+		70F28AE219EF0E5B00B92971 /* PhotosFrameworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosFrameworkViewController.swift; sourceTree = "<group>"; };
+		70F28AE419EF106100B92971 /* PhotosFrameworkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosFrameworkCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 			children = (
 				701826D619EC633900635CEF /* ViewController.swift */,
 				7018270519EC68BB00635CEF /* GalleryViewController.swift */,
+				70F28AE219EF0E5B00B92971 /* PhotosFrameworkViewController.swift */,
 			);
 			name = "Controller Layer";
 			path = PhotoFilters;
@@ -172,6 +177,7 @@
 				701826DD19EC633900635CEF /* LaunchScreen.xib */,
 				701826D819EC633900635CEF /* Main.storyboard */,
 				708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */,
+				70F28AE419EF106100B92971 /* PhotosFrameworkCell.swift */,
 			);
 			name = "View Layer";
 			path = PhotoFilters;
@@ -294,7 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F28AE319EF0E5B00B92971 /* PhotosFrameworkViewController.swift in Sources */,
 				708B7FA519EDB7A100C34812 /* FilterThumbnail.swift in Sources */,
+				70F28AE519EF106100B92971 /* PhotosFrameworkCell.swift in Sources */,
 				701826D719EC633900635CEF /* ViewController.swift in Sources */,
 				7018270819EC6D0C00635CEF /* GalleryCell.swift in Sources */,
 				707065E619EDA0490072DC94 /* CoreDataSeeder.swift in Sources */,

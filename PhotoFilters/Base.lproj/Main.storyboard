@@ -103,10 +103,10 @@
             </objects>
             <point key="canvasLocation" x="951" y="136"/>
         </scene>
-        <!--View Controller-->
+        <!--Photos Framework View Controller-->
         <scene sceneID="Ks5-lM-ToW">
             <objects>
-                <viewController id="cZd-9m-CU7" sceneMemberID="viewController">
+                <viewController id="cZd-9m-CU7" customClass="PhotosFrameworkViewController" customModule="PhotoFilters" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xl7-B5-pDC"/>
                         <viewControllerLayoutGuide type="bottom" id="jmL-Vf-DHK"/>
@@ -114,8 +114,53 @@
                     <view key="view" contentMode="scaleToFill" id="yu6-uf-Aca">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cBr-Ru-M0u">
+                                <rect key="frame" x="0.0" y="20" width="607" height="580"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bXF-Xn-08S">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PHOTOS_CELL" id="t3T-yr-tPg" customClass="PhotosFrameworkCell" customModule="PhotoFilters" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RpN-f7-FYC">
+                                                    <rect key="frame" x="0.0" y="8" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="RpN-f7-FYC" firstAttribute="top" secondItem="t3T-yr-tPg" secondAttribute="topMargin" id="1sI-qV-XS6"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="RpN-f7-FYC" secondAttribute="trailing" constant="-8" id="doa-Aq-FxR"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="RpN-f7-FYC" secondAttribute="bottom" constant="-16" id="jVv-ty-1vE"/>
+                                            <constraint firstItem="RpN-f7-FYC" firstAttribute="leading" secondItem="t3T-yr-tPg" secondAttribute="leadingMargin" constant="-8" id="qpZ-ZE-OCM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="RpN-f7-FYC" id="S47-Zi-AOk"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jmL-Vf-DHK" firstAttribute="top" secondItem="cBr-Ru-M0u" secondAttribute="bottom" id="9jY-Y7-GcC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cBr-Ru-M0u" secondAttribute="trailing" constant="-23" id="X5q-pX-GNS"/>
+                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="top" secondItem="yu6-uf-Aca" secondAttribute="topMargin" constant="20" id="rxK-82-Uiw"/>
+                            <constraint firstItem="cBr-Ru-M0u" firstAttribute="leading" secondItem="yu6-uf-Aca" secondAttribute="leadingMargin" constant="-16" id="tpL-WN-sQk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="cBr-Ru-M0u" id="cy5-Vk-00c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="td0-Uc-LdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

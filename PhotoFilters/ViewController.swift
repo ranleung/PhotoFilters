@@ -193,7 +193,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             self.enterFilterMode()
         }
         
-        
         //Attaching an action object to the alert or action sheet.
         alertController.addAction(galleryAction)
         alertController.addAction(cancelAction)
