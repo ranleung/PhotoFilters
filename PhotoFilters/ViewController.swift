@@ -101,6 +101,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     }
     
     //From self.filters(Core Data), putting it into self.filterThumbnails
+    //Need to reset when new images pop up
     func resetFilterThumbnails() {
         var newFilters = [FilterThumbnail]()
         for var i = 0; i < self.filters.count; ++i {
