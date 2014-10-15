@@ -58,7 +58,7 @@ class FilterThumbnail {
     func filterImage (image : UIImage, completionHandler : (filteredImage : UIImage) -> Void) {
         //Going to a different thread
         self.imageQueue.addOperationWithBlock({ () -> Void in
-            //Setting up the filter with a CIImage
+            //Setting up the filter with a CIImage, changes UIImage to CIImage
             var image = CIImage(image: image)
             self.filter!.setValue(image, forKey: kCIInputImageKey)
             

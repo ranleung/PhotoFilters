@@ -91,6 +91,9 @@
 		701826C319EC633900635CEF = {
 			isa = PBXGroup;
 			children = (
+				701826F419EC638B00635CEF /* Controller Layer */,
+				701826F619EC639F00635CEF /* Model Layer */,
+				701826F519EC639500635CEF /* View Layer */,
 				701826CE19EC633900635CEF /* PhotoFilters */,
 				701826E719EC633900635CEF /* PhotoFiltersTests */,
 				701826CD19EC633900635CEF /* Products */,
@@ -111,9 +114,6 @@
 			children = (
 				701826D119EC633900635CEF /* AppDelegate.swift */,
 				707065EB19EDA1AD0072DC94 /* Filter.swift */,
-				701826F419EC638B00635CEF /* Controller Layer */,
-				701826F619EC639F00635CEF /* Model Layer */,
-				701826F519EC639500635CEF /* View Layer */,
 				701826DB19EC633900635CEF /* Images.xcassets */,
 				701826D319EC633900635CEF /* PhotoFilters.xcdatamodeld */,
 				701826CF19EC633900635CEF /* Supporting Files */,
@@ -160,6 +160,7 @@
 				7018270519EC68BB00635CEF /* GalleryViewController.swift */,
 			);
 			name = "Controller Layer";
+			path = PhotoFilters;
 			sourceTree = "<group>";
 		};
 		701826F519EC639500635CEF /* View Layer */ = {
@@ -173,6 +174,7 @@
 				708B7FA619EDBD3600C34812 /* FilterThumbnailCell.swift */,
 			);
 			name = "View Layer";
+			path = PhotoFilters;
 			sourceTree = "<group>";
 		};
 		701826F619EC639F00635CEF /* Model Layer */ = {
@@ -182,6 +184,7 @@
 				707065E519EDA0490072DC94 /* CoreDataSeeder.swift */,
 			);
 			name = "Model Layer";
+			path = PhotoFilters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
