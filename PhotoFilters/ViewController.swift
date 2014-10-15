@@ -54,35 +54,17 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
     }
     
-    func enterFilterMode() {
-        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 2
-        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant * 2
-        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 2
-        self.collectionViewBottomConstraint.constant = 100
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            //Lays out the subviews immediately.
-            self.view.layoutIfNeeded()
-        })
-        
-        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "exitFilteringMode")
-        self.navigationItem.rightBarButtonItem = doneButton
-    }
-    
-    func exitFilteringMode() {
-        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant / 2
-        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant / 2
-        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant / 2
-        self.collectionViewBottomConstraint.constant = -100
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            //Lays out the subviews immediately.
-            self.view.layoutIfNeeded()
-        })
-        self.navigationItem.rightBarButtonItem = nil
+    func generateThumbnail() {
+        let size = CGSize(width: 100, height: 100)
+        //Creates a bitmap-based graphics context and makes it the current context.
+        UIGraphicsBeginImageContext(size)
+        self.imageView.image?.drawInRect(CGRect(x: 0, y: 0, width: 100, height: 100))
+        //Returns an image based on the contents of the current bitmap-based graphics context.
+        self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
+        //Removes the current bitmap-based graphics context from the top of the stack.
+        UIGraphicsEndImageContext()
     }
     
     //Getting filters from Core Data and storing in self.filters
@@ -114,6 +96,34 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             newFilters.append(thumbnail)
         }
         self.filterThumbnails = newFilters
+    }
+    
+    func enterFilterMode() {
+        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 2
+        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant * 2
+        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 2
+        self.collectionViewBottomConstraint.constant = 100
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            //Lays out the subviews immediately.
+            self.view.layoutIfNeeded()
+        })
+        
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "exitFilteringMode")
+        self.navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func exitFilteringMode() {
+        self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant / 2
+        self.imageViewTrailingConstraint.constant = self.imageViewTrailingConstraint.constant / 2
+        self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant / 2
+        self.collectionViewBottomConstraint.constant = -100
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            //Lays out the subviews immediately.
+            self.view.layoutIfNeeded()
+        })
+        self.navigationItem.rightBarButtonItem = nil
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -178,18 +188,8 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func generateThumbnail() {
-        let size = CGSize(width: 100, height: 100)
-        //Creates a bitmap-based graphics context and makes it the current context.
-        UIGraphicsBeginImageContext(size)
-        self.imageView.image?.drawInRect(CGRect(x: 0, y: 0, width: 100, height: 100))
-        //Returns an image based on the contents of the current bitmap-based graphics context.
-        self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
-        //Removes the current bitmap-based graphics context from the top of the stack.
-        UIGraphicsEndImageContext()
-    }
-    
-    //Being called automatically from the delegate?
+    //Being called automatically from the delegate
+    //Tells the delegate that the user picked a still image or movie.
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -220,6 +220,7 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
     //For applying filters to the main picture
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("Clicked")
+        
         let filteredImageSelected = self.filterThumbnails[indexPath.row]
         
         filteredImageSelected.filterImage(self.imageView.image!, completionHandler: { (filteredImage) -> Void in
