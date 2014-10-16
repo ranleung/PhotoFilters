@@ -33,7 +33,7 @@ class AVFoundationCameraViewController: UIViewController {
         var captureSession = AVCaptureSession()
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = CGRectMake(0, 64, self.view.frame.size.width, CGFloat(self.view.frame.size.height * 0.6))
+        previewLayer.frame = CGRectMake(0, 30, self.view.frame.size.width, CGFloat(self.view.frame.size.height * 0.7))
         self.view.layer.addSublayer(previewLayer)
         
         var device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
