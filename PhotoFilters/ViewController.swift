@@ -30,7 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var filterThumbnails = [FilterThumbnail]()
     var context: CIContext?
     var originalThumbnail: UIImage?
-    var filteredImage: UIImage?
     var unFilteredImage: UIImage?
     
     var delegate: PhotoDelegate?
@@ -223,6 +222,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //Tells the delegate that the user picked a still image or movie.
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        //LOOK OVER
+        self.originalThumbnail = self.imageView.image
+        self.generateThumbnail()
+        self.resetFilterThumbnails()
+        self.collectionView.reloadData()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -238,7 +242,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if filterThumbnail.filteredThumbnail != nil {
             cell.imageView.image = filterThumbnail.filteredThumbnail
         } else {
-            //cell.imageView.image = filterThumbnail.originalThumbnail
+            cell.imageView.image = filterThumbnail.originalThumbnail
             //filterThumbnail is a class instance
             filterThumbnail.generateThumbnail({ (image) -> Void in
                 if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FilterThumbnailCell {
@@ -255,11 +259,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let filteredImageSelected = self.filterThumbnails[indexPath.row]
         
-        filteredImageSelected.filterImage(self.imageView.image!, completionHandler: { (filteredImage) -> Void in
-            if self.imageView!.image == self.filteredImage {
-                self.imageView!.image = self.unFilteredImage
-            }
-            self.filteredImage = filteredImage
+        //When user does not pick any other photo options, self.unFilteredImage is what is on screen.
+        if self.unFilteredImage == nil {
+            self.unFilteredImage = self.imageView.image
+        }
+        
+        //Pass in unfiltered photo so filter will not keep building
+        filteredImageSelected.filterImage(self.unFilteredImage!, completionHandler: { (filteredImage) -> Void in
             self.imageView!.image = filteredImage
         })
     }
@@ -269,7 +275,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
         self.imageView.image = image
-        self.unFilteredImage = image
+        self.unFilteredImage = self.imageView.image
         self.generateThumbnail()
         self.resetFilterThumbnails()
         self.collectionView.reloadData()
