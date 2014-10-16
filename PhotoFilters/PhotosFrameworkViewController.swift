@@ -9,7 +9,6 @@
 import UIKit
 import Photos
 
-
 class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet var collectionView: UICollectionView!
@@ -24,9 +23,10 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
     
     //Represents a collection of photo or video asset
     var assetCollection: PHAssetCollection!
-
     
     var assetCellSize: CGSize!
+    
+    var flowlayout: UICollectionViewFlowLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +45,32 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
         var cellSize = flowLayout.itemSize
         self.assetCellSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale)
         
+        var pinch = UIPinchGestureRecognizer(target: self, action: "pinchAction:")
+        self.collectionView.addGestureRecognizer(pinch)
+        
+        self.flowlayout = self.collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+    }
+    
+    func pinchAction(pinch: UIPinchGestureRecognizer) {
+        println("Just pinched")
+        
+        if pinch.state == UIGestureRecognizerState.Ended {
+            println("Pinch Ended")
+            println(pinch.velocity)
+            
+            self.collectionView.performBatchUpdates({ () -> Void in
+                //Zooming in
+                if pinch.velocity > 0 {
+                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 2, height: self.flowlayout.itemSize.height * 2)
+                } else {
+                    //Zoom out
+                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 0.5, height: self.flowlayout.itemSize.height * 0.5)
+                }
+            }, completion: nil)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -79,7 +103,9 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
         var newImage: UIImage?
         var asset = self.assetFetchResults[indexPath.row] as PHAsset
         
+        //For the bigger picture
         self.imageManager.requestImageDataForAsset(asset, options: nil) { (data, string, orientation, info) -> Void in
+            println(info.description)
             newImage = UIImage(data: data)
             self.delegate?.didTapOnPicture(newImage)
             self.dismissViewControllerAnimated(true, completion: nil)

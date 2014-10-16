@@ -18,8 +18,15 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     //Creating an empty array for image storage
     var images = [UIImage]()
     
+    var flowlayout: UICollectionViewFlowLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var pinch = UIPinchGestureRecognizer(target: self, action: "pinchAction:")
+        self.collectionView.addGestureRecognizer(pinch)
+        
+        self.flowlayout = self.collectionView.collectionViewLayout as UICollectionViewFlowLayout
     
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -41,6 +48,22 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.images.append(image5)
         self.images.append(image6)
         self.images.append(image7)
+    }
+    
+    func pinchAction(pinch: UIPinchGestureRecognizer) {
+        println("Pinched")
+        
+        if pinch.state == UIGestureRecognizerState.Ended {
+            println("ended")
+            println(pinch.velocity)
+            self.collectionView.performBatchUpdates({ () -> Void in
+                if pinch.velocity > 0 {
+                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 2, height: self.flowlayout.itemSize.height * 2)
+                } else {
+                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 0.5, height: self.flowlayout.itemSize.height * 0.5)
+                }
+            }, completion: nil )
+        }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
