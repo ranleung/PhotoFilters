@@ -85,7 +85,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //The image is now being stored in the custom delegate.
-        self.delegate?.didTapOnPicture(self.images[indexPath.row])
+        self.delegate?.controller(self, didTapOnPicture: self.images[indexPath.row])
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

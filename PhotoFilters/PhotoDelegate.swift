@@ -9,5 +9,5 @@
 import UIKit
 
 protocol PhotoDelegate: class {
-    func didTapOnPicture(image: UIImage?)
+    func controller(controller: UIViewController, didTapOnPicture image: UIImage?)
 }

@@ -270,8 +270,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         })
     }
     
-    //The function that will be called on by the custom delegate
-    func didTapOnPicture(image: UIImage?) {
+    func controller(controller: UIViewController, didTapOnPicture image: UIImage?) {
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
         self.imageView.image = image

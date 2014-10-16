@@ -114,7 +114,7 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
         self.imageManager.requestImageDataForAsset(asset, options: nil) { (data, string, orientation, info) -> Void in
             println(info.description)
             newImage = UIImage(data: data)
-            self.delegate?.didTapOnPicture(newImage)
+            self.delegate?.controller(self, didTapOnPicture: newImage)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
