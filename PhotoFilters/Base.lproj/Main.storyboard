@@ -97,6 +97,7 @@
                         <outlet property="imageViewTrailingConstraint" destination="mFc-l6-xBL" id="zF0-Yq-RAt"/>
                         <segue destination="oIo-p1-RkI" kind="presentation" identifier="SHOW_GALLERY" id="gzJ-ib-LFC"/>
                         <segue destination="cZd-9m-CU7" kind="presentation" identifier="SHOW_PHOTOS_FRAMEWORK" id="CWq-Ah-2R1"/>
+                        <segue destination="acs-PO-MQy" kind="presentation" identifier="SHOW_AVFRAMEWORK" id="MR7-G1-NFV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -164,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="td0-Uc-LdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="920"/>
+            <point key="canvasLocation" x="1447" y="1080"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="PsV-f1-7B0">
@@ -302,6 +303,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2V-bK-XVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="84" y="136"/>
+        </scene>
+        <!--Foundation Camera View Controller-->
+        <scene sceneID="gMN-vE-KJl">
+            <objects>
+                <viewController id="acs-PO-MQy" customClass="AVFoundationCameraViewController" customModule="PhotoFilters" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DkT-Pn-iXV"/>
+                        <viewControllerLayoutGuide type="bottom" id="gsR-vF-LsL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xwM-a0-MAR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4m9-NT-CXo">
+                                <rect key="frame" x="273" y="530" width="55" height="30"/>
+                                <state key="normal" title="Capture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="capturePressed:" destination="acs-PO-MQy" eventType="touchUpInside" id="xeN-YQ-All"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aEl-27-JfY">
+                                <rect key="frame" x="484" y="425" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="h8x-E1-247"/>
+                                    <constraint firstAttribute="width" constant="100" id="oyB-nz-pAP"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="4m9-NT-CXo" secondAttribute="centerX" id="amI-NJ-4hd"/>
+                            <constraint firstAttribute="centerX" secondItem="aEl-27-JfY" secondAttribute="centerX" constant="250" id="gjG-d6-gLj"/>
+                            <constraint firstItem="aEl-27-JfY" firstAttribute="trailing" secondItem="xwM-a0-MAR" secondAttribute="trailingMargin" id="gtR-6r-maw"/>
+                            <constraint firstItem="aEl-27-JfY" firstAttribute="leading" secondItem="xwM-a0-MAR" secondAttribute="leadingMargin" id="hoz-6n-Y3F"/>
+                            <constraint firstAttribute="bottom" secondItem="4m9-NT-CXo" secondAttribute="bottom" constant="40" id="qvn-Ls-M0B"/>
+                            <constraint firstAttribute="bottom" secondItem="aEl-27-JfY" secondAttribute="bottom" constant="75" id="uxd-Ix-0Ho"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gjG-d6-gLj"/>
+                                <exclude reference="hoz-6n-Y3F"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="capturePreviewImageView" destination="aEl-27-JfY" id="lNr-DG-b8M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Owm-Ai-fE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="429" y="1080"/>
         </scene>
     </scenes>
     <resources>

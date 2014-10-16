@@ -189,6 +189,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.performSegueWithIdentifier("SHOW_PHOTOS_FRAMEWORK", sender: self)
         }
         
+        //AVFoundation Camera
+        let avFoundationAction = UIAlertAction(title: "AVFoundation Camera", style: UIAlertActionStyle.Default) { (action) -> Void in
+            self.performSegueWithIdentifier("SHOW_AVFRAMEWORK", sender: self)
+        }
+        
         //Filters
         let filterAction = UIAlertAction(title: "Filters", style: UIAlertActionStyle.Default) { (action) -> Void in
             self.enterFilterMode()
@@ -199,6 +204,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         alertController.addAction(cancelAction)
         alertController.addAction(photoLibraryAction)
         alertController.addAction(photosFrameworkAction)
+        alertController.addAction(avFoundationAction)
         alertController.addAction(filterAction)
         //Check to see if the device has a Camera, if yes, present the option for Camera
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
