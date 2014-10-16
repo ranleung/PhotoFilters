@@ -64,10 +64,17 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
             self.collectionView.performBatchUpdates({ () -> Void in
                 //Zooming in
                 if pinch.velocity > 0 {
-                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 2, height: self.flowlayout.itemSize.height * 2)
+                    
+                    if self.flowlayout.itemSize != CGSize(width: 300, height: 300) {
+                        self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 2, height: self.flowlayout.itemSize.height * 2)
+                        println("THE ITEMSIZE IS: \(self.flowlayout.itemSize)")
+                    }
                 } else {
                     //Zoom out
-                    self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 0.5, height: self.flowlayout.itemSize.height * 0.5)
+                    if self.flowlayout.itemSize != CGSize(width: 75, height: 75) {
+                        self.flowlayout.itemSize = CGSize(width: self.flowlayout.itemSize.width * 0.5, height: self.flowlayout.itemSize.height * 0.5)
+                        println("THE ITEMSIZE IS: \(self.flowlayout.itemSize)")
+                    }
                 }
             }, completion: nil)
         }
