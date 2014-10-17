@@ -123,22 +123,3 @@ class PhotosFrameworkViewController: UIViewController, UICollectionViewDataSourc
 
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

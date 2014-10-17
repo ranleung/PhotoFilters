@@ -27,11 +27,17 @@ class AVFoundationCameraViewController: UIViewController {
     
     var stillImageOutput = AVCaptureStillImageOutput()
     
+    weak var delegate: PhotoDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var tap = UITapGestureRecognizer(target: self, action: "tapAction:")
+        self.capturePreviewImageView.addGestureRecognizer(tap)
+        
         var captureSession = AVCaptureSession()
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+        //Create a preview layer
         var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = CGRectMake(0, 30, self.view.frame.size.width, CGFloat(self.view.frame.size.height * 0.7))
         self.view.layer.addSublayer(previewLayer)
@@ -47,14 +53,7 @@ class AVFoundationCameraViewController: UIViewController {
         self.stillImageOutput.outputSettings = outputSettings
         captureSession.addOutput(self.stillImageOutput)
         captureSession.startRunning()
-        // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func capturePressed(sender: AnyObject) {
         
@@ -80,8 +79,20 @@ class AVFoundationCameraViewController: UIViewController {
             self.capturePreviewImageView.image = image
             println(image.size)
         })
-        
-        
     }
     
+    func tapAction(tap: UITapGestureRecognizer) {
+        println("TAP GESTURE")
+        self.delegate?.controller(self, didTapOnPicture: self.capturePreviewImageView.image)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
 }
+
+
+
+
+
+
+

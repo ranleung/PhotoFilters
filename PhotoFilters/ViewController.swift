@@ -10,6 +10,8 @@ import UIKit
 import CoreImage
 import OpenGLES
 import CoreData
+import Accounts
+import Social
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PhotoDelegate  {
     
@@ -221,6 +223,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else if segue.identifier == "SHOW_PHOTOS_FRAMEWORK" {
             let destinationVC = segue.destinationViewController as PhotosFrameworkViewController
             destinationVC.delegate = self
+        } else if segue.identifier == "SHOW_AVFRAMEWORK" {
+            let destinationVC = segue.destinationViewController as AVFoundationCameraViewController
+            destinationVC.delegate = self
         }
     }
     
@@ -274,6 +279,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         filteredImageSelected.filterImage(self.unFilteredImage!, completionHandler: { (filteredImage) -> Void in
             self.imageView!.image = filteredImage
         })
+    }
+    
+    //To post on twitter
+    @IBAction func postTwitter(sender: AnyObject) {
+        println("post on twitter")
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            var tweetSheet: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            tweetSheet.setInitialText("")
+            tweetSheet.addImage(self.imageView.image)
+            self.presentViewController(tweetSheet, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func savePhoto(sender: AnyObject) {
+        
+        
     }
     
     func controller(controller: UIViewController, didTapOnPicture image: UIImage?) {
