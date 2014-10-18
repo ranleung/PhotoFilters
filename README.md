@@ -2,4 +2,9 @@
 
 Bulding a Photo Filtering iOS App written in Swift.
 
-Using Core Data and Core Image
++ Core Data
++ Core Image
++ Photos Framework
++ AVFoundationSwift
++ Twitter Integration for posting
++ Ability to save
