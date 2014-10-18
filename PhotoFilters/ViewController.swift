@@ -46,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var image = UIImage(named: "photo2.jpg")
+        //var image = UIImage(named: "photo2.jpg")
         self.generateThumbnail()
         
         //Setting up GPU Context
@@ -77,12 +77,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.resetFilterThumbnails()
         
         self.assetFetchResults = PHAsset.fetchAssetsWithOptions(nil)
-        var myAlbum = PHCollectionList.fetchCollectionListsWithType(PHCollectionListType.Folder, subtype: PHCollectionListSubtype.Any, options: nil)
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     }
     
+    
+    //Create Thumbnail of UIImage Object
+    //http://beageek.biz/how-to-create-thumbnail-uiimage-xcode-ios/
     func generateThumbnail() {
         let size = CGSize(width: 100, height: 100)
         //Creates a bitmap-based graphics context and makes it the current context.
@@ -154,6 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.view.layoutIfNeeded()
         })
         self.navigationItem.rightBarButtonItem = nil
+
     }
     
     @IBAction func photosPressed(sender: AnyObject) {

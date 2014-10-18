@@ -37,7 +37,7 @@ class FilterThumbnail {
             //Sets all input values for a filter to default values.
             imageFilter.setDefaults()
             
-            if self.filter?.name() == "CIBloom" {
+            if self.filterName == "CIBloom" {
                 imageFilter.setValue(10.0, forKey: kCIInputRadiusKey)
                 imageFilter.setValue(5.0, forKey: kCIInputIntensityKey)
             }
@@ -68,9 +68,10 @@ class FilterThumbnail {
             var image = CIImage(image: image)
             self.filter!.setValue(image, forKey: kCIInputImageKey)
             
-//            if self.filter?.name() == "CIBloom" {
-//                
-//            }
+            if self.filterName == "CIBloom" {
+                self.filter!.setValue(10.0, forKey: kCIInputRadiusKey)
+                self.filter!.setValue(5.0, forKey: kCIInputIntensityKey)
+            }
             
             //Generate the results
             var result = self.filter!.valueForKey(kCIOutputImageKey) as CIImage

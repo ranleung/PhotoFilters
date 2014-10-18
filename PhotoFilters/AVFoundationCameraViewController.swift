@@ -6,13 +6,6 @@
 //  Copyright (c) 2014 Randall. All rights reserved.
 //
 
-//
-//  AVFoundationCameraViewController.swift
-//  CFImageFilterSwift
-//
-//  Created by Bradley Johnson on 9/22/14.
-//  Copyright (c) 2014 Brad Johnson. All rights reserved.
-//
 
 import UIKit
 import AVFoundation
