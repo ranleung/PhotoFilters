@@ -12,6 +12,7 @@ import OpenGLES
 import CoreData
 import Accounts
 import Social
+import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PhotoDelegate  {
     
@@ -38,6 +39,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //Did this in CoreDataSeeder.swift
     var managedObjectContext: NSManagedObjectContext!
+    
+    var assetFetchResults: PHFetchResult!
+    
+    var album: PHAssetCollection!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +75,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //self.fetchFilters()
         println("Number of filters: \(filters.count)")
         self.resetFilterThumbnails()
+        
+        self.assetFetchResults = PHAsset.fetchAssetsWithOptions(nil)
+        var myAlbum = PHCollectionList.fetchCollectionListsWithType(PHCollectionListType.Folder, subtype: PHCollectionListSubtype.Any, options: nil)
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -292,11 +300,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    @IBAction func savePhoto(sender: AnyObject) {
-        
-        
+    func addNewAssetWithImage(image: UIImage) {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+            
+            let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset
+            let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: self.album)
+            albumChangeRequest.addAssets([assetPlaceholder])
+            
+            }, completionHandler: { success, error in
+                NSLog("Finished updating asset", (success ? "Success." : error))
+        })
     }
     
+    
+    //Saving Image
+    @IBAction func savePhoto(sender: AnyObject) {
+        
+        //Works, but not using Photos Framework
+        //UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil)
+        
+        if self.imageView.image != nil {
+            self.addNewAssetWithImage(self.imageView.image!)
+        }
+    }
+    
+
     func controller(controller: UIViewController, didTapOnPicture image: UIImage?) {
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
