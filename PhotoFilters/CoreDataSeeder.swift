@@ -49,6 +49,9 @@ class CoreDataSeeder {
         var effectTransfer = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
         effectTransfer.name = "CIPhotoEffectTransfer"
         
+        var effectBloom = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+        effectBloom.name = "CIBloom"
+
         
         var error: NSError?
         //& is actually memory address, instead of pointer

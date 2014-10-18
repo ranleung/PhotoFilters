@@ -313,7 +313,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         })
     }
     
-    
     //Saving Image
     @IBAction func savePhoto(sender: AnyObject) {
         
@@ -325,7 +324,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-
     func controller(controller: UIViewController, didTapOnPicture image: UIImage?) {
         println("did tap on picture")
         //From the custom delegate, the image is now the self.imageView.image
@@ -335,6 +333,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.resetFilterThumbnails()
         self.collectionView.reloadData()
     }
-
 }
 

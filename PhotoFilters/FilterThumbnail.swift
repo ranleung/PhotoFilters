@@ -36,6 +36,12 @@ class FilterThumbnail {
             var imageFilter = CIFilter(name: self.filterName)
             //Sets all input values for a filter to default values.
             imageFilter.setDefaults()
+            
+            if self.filter?.name() == "CIBloom" {
+                imageFilter.setValue(10.0, forKey: kCIInputRadiusKey)
+                imageFilter.setValue(5.0, forKey: kCIInputIntensityKey)
+            }
+            
             //kCIInputImageKey - A key for the CIImage object to use as an input image. For filters that also use a background image, this key refers to the foreground image.
             imageFilter.setValue(image, forKey: kCIInputImageKey)
             
@@ -61,6 +67,10 @@ class FilterThumbnail {
             //Setting up the filter with a CIImage, changes UIImage to CIImage
             var image = CIImage(image: image)
             self.filter!.setValue(image, forKey: kCIInputImageKey)
+            
+//            if self.filter?.name() == "CIBloom" {
+//                
+//            }
             
             //Generate the results
             var result = self.filter!.valueForKey(kCIOutputImageKey) as CIImage
