@@ -82,7 +82,7 @@ class FilterThumbnail {
             
             //Back to main queue to pass back the image
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                completionHandler(filteredImage: filteredImage)
+                completionHandler(filteredImage: filteredImage!)
             })
         })
     }

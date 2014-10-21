@@ -70,7 +70,7 @@ class AVFoundationCameraViewController: UIViewController {
             var data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
             var image = UIImage(data: data)
             self.capturePreviewImageView.image = image
-            println(image.size)
+            //println(image.size)
         })
     }
     

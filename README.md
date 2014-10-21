@@ -11,3 +11,4 @@ Bulding a Photo Filtering iOS App written in Swift.
 
 
 Built in Xcode 6.0.1
+*Updated for Xcode 6.1*

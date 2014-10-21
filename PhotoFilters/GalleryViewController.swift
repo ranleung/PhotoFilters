@@ -41,13 +41,13 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var image7 = UIImage(named: "photo8.jpg")
         
         //Appending the found images from assets into our array
-        self.images.append(image1)
-        self.images.append(image2)
-        self.images.append(image3)
-        self.images.append(image4)
-        self.images.append(image5)
-        self.images.append(image6)
-        self.images.append(image7)
+        self.images.append(image1!)
+        self.images.append(image2!)
+        self.images.append(image3!)
+        self.images.append(image4!)
+        self.images.append(image5!)
+        self.images.append(image6!)
+        self.images.append(image7!)
     }
     
     func pinchAction(pinch: UIPinchGestureRecognizer) {
