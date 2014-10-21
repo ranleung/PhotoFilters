@@ -8,3 +8,6 @@ Bulding a Photo Filtering iOS App written in Swift.
 + AVFoundationSwift
 + Twitter Integration for posting
 + Ability to save
+
+
+Built using Xcode 6.0.1
